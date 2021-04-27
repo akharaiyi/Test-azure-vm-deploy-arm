@@ -17,14 +17,8 @@
         "subnetName": {
             "type": "string"
         },
-        "virtualNetworkName": {
+        "virtualNetworkId": {
             "type": "string"
-        },
-        "addressPrefixes": {
-            "type": "array"
-        },
-        "subnets": {
-            "type": "array"
         },
         "publicIpAddressName": {
             "type": "string"
@@ -52,14 +46,11 @@
         },
         "adminUsername": {
             "type": "string"
-        },
-        "customData": {
-            "type": "secureString"
         }
     },
     "variables": {
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
-        "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "vnetId": "[parameters('virtualNetworkId')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
     },
     "resources": [
@@ -70,7 +61,6 @@
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]",
-                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
                 "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName'))]"
             ],
             "properties": {
@@ -103,21 +93,6 @@
             "location": "[parameters('location')]",
             "properties": {
                 "securityRules": "[parameters('networkSecurityGroupRules')]"
-            },
-            "tags": {
-                "Name": "vm"
-            }
-        },
-        {
-            "name": "[parameters('virtualNetworkName')]",
-            "type": "Microsoft.Network/virtualNetworks",
-            "apiVersion": "2019-09-01",
-            "location": "[parameters('location')]",
-            "properties": {
-                "addressSpace": {
-                    "addressPrefixes": "[parameters('addressPrefixes')]"
-                },
-                "subnets": "[parameters('subnets')]"
             },
             "tags": {
                 "Name": "vm"
@@ -176,8 +151,7 @@
                     "adminUsername": "[parameters('adminUsername')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": true
-                    },
-                    "customData": "[parameters('customData')]"
+                    }
                 },
                 "diagnosticsProfile": {
                     "bootDiagnostics": {

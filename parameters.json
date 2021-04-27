@@ -6,10 +6,10 @@
             "value": "eastus"
         },
         "networkInterfaceName": {
-            "value": "testvm975"
+            "value": "testvm881"
         },
         "networkSecurityGroupName": {
-            "value": "testvm-nsg"
+            "value": "testvmnsg878"
         },
         "networkSecurityGroupRules": {
             "value": [
@@ -31,26 +31,11 @@
         "subnetName": {
             "value": "default"
         },
-        "virtualNetworkName": {
-            "value": "ctg-a5665-resource-east-vnet"
-        },
-        "addressPrefixes": {
-            "value": [
-                "10.0.0.0/16"
-            ]
-        },
-        "subnets": {
-            "value": [
-                {
-                    "name": "default",
-                    "properties": {
-                        "addressPrefix": "10.0.0.0/24"
-                    }
-                }
-            ]
+        "virtualNetworkId": {
+            "value": "/subscriptions/347fc977-961b-4016-bf42-a96ab3b85478/resourceGroups/ctg-a5665-resource-east/providers/Microsoft.Network/virtualNetworks/ctg-a5665-resource-east-vnet"
         },
         "publicIpAddressName": {
-            "value": "testvm-ip"
+            "value": "testvmip249"
         },
         "publicIpAddressType": {
             "value": "Dynamic"
@@ -75,9 +60,6 @@
         },
         "adminUsername": {
             "value": "azureuser"
-        },
-        "customData": {
-            "value": ""
         }
     }
 }
