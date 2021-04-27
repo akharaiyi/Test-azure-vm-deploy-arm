@@ -77,7 +77,7 @@
             "value": "azureuser"
         },
         "customData": {
-            "value": null
+            "value": ""
         }
     }
 }
